@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ServerSideProject.Models.User>
+
+@{
+    ViewBag.Title = "AdministratorsView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Administrators</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Administrators</th>
+        <th>Email</th>
+        <th>Phonenr</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var admin in Model)
+    {
+        if (admin.Administrator)
+        {
+            <tr>
+                <td>
+                    <strong>@admin.Name</strong>
+                </td>
+                <td> email@email.com</td>
+                <td>5555-5555-5555</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
