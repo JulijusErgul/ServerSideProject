@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace ServerSideProject
+namespace ServersideProject
 {
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -13,6 +13,8 @@ namespace ServerSideProject
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ServiceLayer.Configuration.AutoMapperConfig.Configure();
+
         }
     }
 }
