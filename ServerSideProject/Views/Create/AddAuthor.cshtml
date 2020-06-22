@@ -1,0 +1,52 @@
+﻿@model ServiceLayer.Models.Author
+@{
+    ViewBag.Title = "Create Author";
+    /*have to display the error list in some way*/
+}
+
+<h2>CreateAuthor</h2>
+
+@if(ViewData["errorMessages"] != null)
+{
+    foreach(var error in List<string>.ViewData["errorMessages"])
+    {
+
+    }
+}
+
+
+<div class="form-group">
+    @using (Html.BeginForm("AddAuthor", "Create", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>    
+                    Enter Firstname:
+                </td>
+                <td>
+                    @Html.TextBoxFor(author => author.FirstName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Enter Lastname:
+                </td>
+                <td>
+                    @Html.TextBoxFor(author => author.LastName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Enter BirthYear:
+                </td>
+                <td>
+                    @Html.TextBoxFor(author => author.BirthYear)
+                </td>
+            </tr>
+
+            <tr>
+                <input type="submit" value="Create Author" formmethod="POST" />
+            </tr>
+        </table>
+    }
+</div>

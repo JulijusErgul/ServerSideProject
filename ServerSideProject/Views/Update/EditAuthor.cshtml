@@ -1,0 +1,26 @@
+﻿@model ServiceLayer.Models.AuthorDetails
+@{
+    ViewBag.Title = "EditAuthor";
+}
+
+<h2>EditAuthor</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("AuthorID", Model.AuthorID)
+    @:First Name:<br/>@Html.TextBox("authorFirstName", Model.FirstName)<br />
+    @:Last Name:<br />@Html.TextBox("authorLastName", Model.LastName)<br />
+    @:Birth Year:<br />@Html.TextBox("authorBirthYear", Model.BirthYear)<br />
+    @:Remove Book:<br /> @Html.DropDownList("RemoveBook",
+                  new SelectList(Model.BooksList,
+                  "ISBN",
+                  "Title",
+                  0),"")<br />
+    @:Add Book:<br /> @Html.DropDownList("AddBook",
+                  new SelectList(Model.NonBookList,
+                  "ISBN",
+                  "Title",
+                  0),"")<br />
+    <br />
+    <input type="submit" value="Save Changes" formmethod="post"/>
+}

@@ -1,0 +1,45 @@
+﻿@model PagedList.IPagedList<ServiceLayer.Models.Book>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Books";
+}
+
+<h2>Books</h2>
+<div class="form-group">
+    @using (Html.BeginForm())
+    {
+        <p>
+            Find book: <br/>
+            @Html.TextBox("SearchString", "", new { @class="form-control"})
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>
+<p>
+    @Html.ActionLink("Add Book", "AddBook", "Create")
+</p>
+
+<table class="table">
+    <thead class="thead-default">
+        <tr>Name</tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    Title: <b>@Html.DisplayFor(modelItem => item.Title)</b><br />
+                    ISBN: @Html.DisplayFor(modelItem => item.ISBN),
+                    Info: @Html.DisplayFor(modelItem => item.PublicationInfo)
+                </td>
+                <td>@Html.ActionLink("Details", "BookDetails", "List", new { isbn = item.ISBN }, null)</td>
+                <td>@Html.ActionLink("Edit", "EditBook", "Update", new { isbn = item.ISBN }, null)</td>
+                <td>@Html.ActionLink("Delete", "DeleteBook", "Delete", new { isbn = item.ISBN }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("ListBooks", new { page }))

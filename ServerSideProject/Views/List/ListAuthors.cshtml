@@ -1,0 +1,48 @@
+﻿@*@model IEnumerable<ServiceLayer.Models.Author>*@
+@model PagedList.IPagedList<ServiceLayer.Models.Author>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Authors";
+}
+
+<h2>Authors</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search Author: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" formmethod="post"/>
+    </p>
+}
+
+
+<p>
+    @Html.ActionLink("Add new Author", "AddAuthor", "Create")
+</p>
+
+<table class="table">
+    <thead class="thead-default">
+        <tr>Name</tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName),
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                    @Html.HiddenFor(modelItem => item.Aid)
+
+                </td>
+                <td>@Html.ActionLink("Details", "AuthorDetails", "List", new { Aid = item.Aid }, null)</td>
+                <td>@Html.ActionLink("Edit", "EditAuthor", "Update", new { Aid = item.Aid }, null)</td>
+                <td>@Html.ActionLink("Delete", "DeleteAuthor", "Delete", new { Aid = item.Aid }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("ListAuthors", new { page}))

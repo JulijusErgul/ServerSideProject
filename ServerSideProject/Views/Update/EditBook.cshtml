@@ -1,0 +1,19 @@
+﻿@model ServiceLayer.Models.BookDetails
+@{
+    ViewBag.Title = "Edit Book";
+}
+
+<h2>EditBook</h2>
+<div class="form-group">
+    @using (Html.BeginForm())
+    {
+
+        @Html.Hidden("BookISBN", Model.BookISBN)
+        @:Book Title:<br />@Html.TextArea("BookTitle", Model.Title, new { @class = "form-control", @rows="4", @height = "50px" })<br />
+        @:Pages:<br />@Html.TextBox("BookPages", Model.BookPages, new { @class = "form-control" })<br />
+        @:ISBN: <br />@Html.TextBox("BookISBN", Model.BookISBN, new { @class = "form-control" })<br />
+        @:Information about the book: <br />@Html.TextArea("BookPublicationInfo", Model.BookInfo, new { @class="form-control",@rows="4", @height="50px"})<br />
+        <input type="submit" value="Save Changes" formmethod="post" />
+
+    }
+</div>
