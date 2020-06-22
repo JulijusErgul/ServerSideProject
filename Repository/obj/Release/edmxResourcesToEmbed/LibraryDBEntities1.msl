@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LibraryDBModelStoreContainer" CdmEntityContainer="LibraryDBEntities">
+    <EntitySetMapping Name="AUTHORs">
+      <EntityTypeMapping TypeName="LibraryDBModel.AUTHOR">
+        <MappingFragment StoreEntitySet="AUTHOR">
+          <ScalarProperty Name="Aid" ColumnName="Aid" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="BirthYear" ColumnName="BirthYear" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BOOKs">
+      <EntityTypeMapping TypeName="LibraryDBModel.BOOK">
+        <MappingFragment StoreEntitySet="BOOK">
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="SignId" ColumnName="SignId" />
+          <ScalarProperty Name="PublicationYear" ColumnName="PublicationYear" />
+          <ScalarProperty Name="publicationinfo" ColumnName="publicationinfo" />
+          <ScalarProperty Name="pages" ColumnName="pages" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLASSIFICATIONs">
+      <EntityTypeMapping TypeName="LibraryDBModel.CLASSIFICATION">
+        <MappingFragment StoreEntitySet="CLASSIFICATION">
+          <ScalarProperty Name="SignId" ColumnName="SignId" />
+          <ScalarProperty Name="Signum" ColumnName="Signum" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="BOOK_AUTHOR" TypeName="LibraryDBModel.BOOK_AUTHOR" StoreEntitySet="BOOK_AUTHOR">
+      <EndProperty Name="AUTHOR">
+        <ScalarProperty Name="Aid" ColumnName="Aid" />
+      </EndProperty>
+      <EndProperty Name="BOOK">
+        <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,15 @@
+﻿@model ServiceLayer.Models.AdminDetails
+@{
+    ViewBag.Title = "EditAdmin";
+}
+
+<h2>EditAdmin</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("AdminID", Model.AdminID)
+    @:First Name:@Html.TextBox("adminFirstName", Model.FirstName)
+    @:Last Name:@Html.TextBox("adminLastName", Model.LastName)
+    @:Email:@Html.TextBox("adminEmail", Model.Email)
+    <input type="submit" value="Save Changes" formmethod="post" />
+}

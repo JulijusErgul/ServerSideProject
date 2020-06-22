@@ -1,0 +1,48 @@
+﻿@model ServiceLayer.Models.Admin
+
+@{
+    ViewBag.Title = "CreateAdmin";
+}
+
+<h2>CreateAdmin</h2>
+
+@using (Html.BeginForm("CreateAdmin", "Create", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>
+                Enter ID:
+            </td>
+            <td>
+                @Html.TextBoxFor(admin => admin.AdminID)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Enter Firstname:
+            </td>
+            <td>
+                @Html.TextBoxFor(admin => admin.FirstName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Enter Lastname:
+            </td>
+            <td>
+                @Html.TextBoxFor(admin => admin.LastName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Enter Email:
+            </td>
+            <td>
+                @Html.TextBoxFor(admin => admin.Email)
+            </td>
+        </tr>
+        <tr>
+            <input type="submit" value="Create admin" formmethod="POST" />
+        </tr>
+    </table>
+}

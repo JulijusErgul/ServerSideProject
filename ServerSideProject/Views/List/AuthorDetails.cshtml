@@ -1,0 +1,45 @@
+﻿@model ServiceLayer.Models.AuthorDetails
+
+@{
+    ViewBag.Title = "AuthorDetails";
+}
+
+<h2>AuthorDetails</h2>
+
+@*
+    vill ha authors namn, förefter, book titlar, antalet böcker, 
+    från böcker  vill vi har, titel, ISBN, Antal sidor, samt år    
+*@
+
+<b>Name: @Model.FirstName @Model.LastName</b>
+<h4>Books written by @Model.FirstName:</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>ISBN</th>
+            <th>Information</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.BooksList != null)
+        {
+            foreach (var item in Model.BooksList)
+            {
+                <tr>
+                    <td>
+                        <b>@Html.DisplayFor(modelItem => item.Title)  </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ISBN)
+                    </td>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublicationInfo)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+

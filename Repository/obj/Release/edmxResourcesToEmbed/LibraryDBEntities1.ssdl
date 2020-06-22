@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibraryDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AUTHOR">
+    <Key>
+      <PropertyRef Name="Aid" />
+    </Key>
+    <Property Name="Aid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirthYear" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="BOOK">
+    <Key>
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="ISBN" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" />
+    <Property Name="SignId" Type="int" />
+    <Property Name="PublicationYear" Type="nvarchar" MaxLength="10" />
+    <Property Name="publicationinfo" Type="nvarchar" MaxLength="255" />
+    <Property Name="pages" Type="smallint" />
+  </EntityType>
+  <EntityType Name="BOOK_AUTHOR">
+    <Key>
+      <PropertyRef Name="ISBN" />
+      <PropertyRef Name="Aid" />
+    </Key>
+    <Property Name="ISBN" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Aid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLASSIFICATION">
+    <Key>
+      <PropertyRef Name="SignId" />
+    </Key>
+    <Property Name="SignId" Type="int" Nullable="false" />
+    <Property Name="Signum" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK_BOOK_AUTHOR_AUTHOR">
+    <End Role="AUTHOR" Type="Self.AUTHOR" Multiplicity="1" />
+    <End Role="BOOK_AUTHOR" Type="Self.BOOK_AUTHOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AUTHOR">
+        <PropertyRef Name="Aid" />
+      </Principal>
+      <Dependent Role="BOOK_AUTHOR">
+        <PropertyRef Name="Aid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOK_AUTHOR_BOOK">
+    <End Role="BOOK" Type="Self.BOOK" Multiplicity="1" />
+    <End Role="BOOK_AUTHOR" Type="Self.BOOK_AUTHOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BOOK">
+        <PropertyRef Name="ISBN" />
+      </Principal>
+      <Dependent Role="BOOK_AUTHOR">
+        <PropertyRef Name="ISBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOK_CLASSIFICATION">
+    <End Role="CLASSIFICATION" Type="Self.CLASSIFICATION" Multiplicity="0..1" />
+    <End Role="BOOK" Type="Self.BOOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSIFICATION">
+        <PropertyRef Name="SignId" />
+      </Principal>
+      <Dependent Role="BOOK">
+        <PropertyRef Name="SignId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibraryDBModelStoreContainer">
+    <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BOOK" EntityType="Self.BOOK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BOOK_AUTHOR" EntityType="Self.BOOK_AUTHOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLASSIFICATION" EntityType="Self.CLASSIFICATION" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BOOK_AUTHOR_AUTHOR" Association="Self.FK_BOOK_AUTHOR_AUTHOR">
+      <End Role="AUTHOR" EntitySet="AUTHOR" />
+      <End Role="BOOK_AUTHOR" EntitySet="BOOK_AUTHOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOK_AUTHOR_BOOK" Association="Self.FK_BOOK_AUTHOR_BOOK">
+      <End Role="BOOK" EntitySet="BOOK" />
+      <End Role="BOOK_AUTHOR" EntitySet="BOOK_AUTHOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOK_CLASSIFICATION" Association="Self.FK_BOOK_CLASSIFICATION">
+      <End Role="CLASSIFICATION" EntitySet="CLASSIFICATION" />
+      <End Role="BOOK" EntitySet="BOOK" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

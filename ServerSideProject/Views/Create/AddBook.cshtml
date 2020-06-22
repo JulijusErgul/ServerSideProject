@@ -1,0 +1,60 @@
+﻿@model ServiceLayer.Models.Book
+
+@{
+    ViewBag.Title = "AddBook";
+}
+
+<h2>CreateBook</h2>
+<div class="form-group">
+    @using (Html.BeginForm("AddBook", "Create", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>
+                    Enter Title:
+                </td>
+                <td>
+                    @Html.TextBoxFor(book => book.Title)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Enter ISBN:
+                </td>
+                <td>
+                    @Html.TextBoxFor(book => book.ISBN)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Enter Publication year:
+                </td>
+                <td>
+                    @Html.TextBoxFor(book => book.PublicationYear)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Enter number of Pages:
+                </td>
+                <td>
+                    @Html.TextBoxFor(book => book.Pages)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Enter Information about the book:
+                </td>
+                <td>
+                    @Html.TextBoxFor(book => book.PublicationInfo)
+                </td>
+            </tr>
+
+            <tr>
+                <input type="submit" value="Create Book" formmethod="POST" />
+            </tr>
+        </table>
+    }
+</div>
